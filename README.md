@@ -1,3 +1,3 @@
-# kaimur
+# CP
 Codechef
 leetcode
