@@ -1,37 +1,49 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-bool power2Bit(string str, int n){
-    int count = 0, sum = 0;
-    for(int i = 0; i < n; i++){
-        if (str[i] == '1') {
-            count++;
-            sum += pow(2, i);
+int countOperation(vector<int> &vec, int x) {
+    int even = 0, odd = 0;
+    for (int i = 0; i < vec.size(); i++) {
+        if(vec[i]%2 == 0) {
+            even++;
+        }
+        else {
+            odd++;
         }
     }
-	cout << "count : " << count << endl << "sum : " << sum <<endl;
-    if(count > 3) {
-        return false;
+    if(even > 0 && odd > 0) {
+        return even;
+    }
+    else if(odd == 0 && even > 0) {
+        if(x%2 == 0) {
+            return -1;
+        }
+        else {
+            return even;
+        }
     }
     else {
-        if(sum > 2) {
-            return true;
-        }
-        return false;
+        return 0;
     }
+    
 }
 
 int main() {
 	// your code goes here
 	int t;
-	cin >> t;
-	while(t--) {
-	    int n;
-	    cin >> n;
-	    string str;
-	    cin >> str;
-	    power2Bit(str, n) == 1 ? cout << "YES" << endl : cout << "NO" <<endl;
+	while(t--){
+	    int n,x;
+	    cin >> n >> x;
+	    vector<int> vec;
+	    for(int i = 0; i < n; i++) {
+	        int a;
+	        cin >> a;
+	        vec.push_back(a);
+	    }
+	    cout << countOperation(vec, x);
+	    
 	}
 	return 0;
 }
